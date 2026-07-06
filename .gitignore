@@ -1,0 +1,14 @@
+# Build output
+demo/target/
+
+# Local H2 database (user data — never commit)
+demo/data/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store

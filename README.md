@@ -1,79 +1,56 @@
-Medication Reminder App
-This project is a Medication Reminder application with two parts:
+# 💊 MedReminder — Your Health Companion
 
-Spring Boot Backend
-A REST API server to manage medications. It stores medications and their doses, and exposes endpoints to add, list, update, and delete medications.
+A modern medication-reminder **web app** built with Spring Boot and a hand-crafted vanilla JS frontend. Track medications, get smart reminders, monitor adherence with analytics, log health data, and ask a built-in assistant about your meds — all in a polished, responsive UI with dark mode and PWA support.
 
-JavaFX Frontend
-A graphical user interface built with JavaFX that allows users to add medications and set reminders. It connects to the backend to save and retrieve medication data dynamically.
+![Java 17](https://img.shields.io/badge/Java-17-orange) ![Spring Boot 3.5](https://img.shields.io/badge/Spring%20Boot-3.5-green) ![PWA](https://img.shields.io/badge/PWA-ready-blue)
 
-Features
-Add new medications with name and dose.
+## ✨ Features
 
-View the list of all medications fetched from the backend.
+- **Dashboard** — AI daily health summary, today's schedule timeline, progress ring, adherence charts, calendar, streaks, refill alerts, recent activity, quick actions
+- **Medication management** — categories, color coding, doctor/pharmacy/Rx info, take-with-food & before-bed flags, notes, prescription-label auto-fill
+- **Pill inventory** — remaining-pill tracking with automatic refill-date estimates and low-supply alerts
+- **Smart reminders** — browser notifications, snooze (10/30 min), skip-today, take-from-toast
+- **Calendar** — full month view with taken/partial/missed dots; click any day for its dose history
+- **Analytics** — daily trend line, weekly bars, adherence heatmap, dose-outcome donut, per-medication adherence, most-missed, average response time
+- **AI Assistant** — plain-language answers about your medications (missed dose, too much, side effects, food rules, what pairs well) plus an interaction checker. Educational only — always confirm with a professional.
+- **Health tracking** — blood pressure, blood sugar, weight, heart rate, mood, sleep, water, symptoms, with trend sparklines
+- **Gamification** — streaks, achievements, confetti when you finish your day 🎉
+- **Reports** — date-ranged adherence reports, printable / save-as-PDF
+- **Dark mode**, notification center, floating action button, skeleton loading, ripple effects, and full mobile responsiveness
+- **PWA** — installable, offline shell caching
+- **Persistent storage** — file-based H2 database survives restarts (`demo/data/`, auto-created)
 
-Set reminders for medications (JavaFX timer notifications).
+## 🚀 Getting Started
 
-Backend API supports adding and listing medications with REST endpoints.
+**Prerequisites:** Java 17+ and Maven 3.x
 
-Getting Started:
-
-
-Prerequisites
-Java 17 or newer
-
-Maven 3.x
-
-Internet connection to download dependencies
-
-Running the Backend
-Open terminal/PowerShell in the project directory containing the backend (where pom.xml is).
-
-Run the backend with:
+```bash
+git clone https://github.com/varunshashivarnam/MedReminderApp.git
+cd MedReminderApp/demo
 mvn spring-boot:run
-Backend starts on http://localhost:8080.
+```
 
-API endpoints:
+Then open **http://localhost:8080** in your browser. That's it — the database is created and seeded automatically on first run.
 
-GET /api/medications — List all medications
+## 🔌 API Overview
 
-POST /api/medications — Add a new medication (send JSON with name and dose)
+| Endpoint | Description |
+|---|---|
+| `GET/POST /api/medications`, `PUT/DELETE /api/medications/{id}` | Medication CRUD |
+| `POST /api/medications/{id}/take` · `/skip` | Mark dose taken / skip today |
+| `GET /api/stats` | Dashboard stats (streaks, refills, missed) |
+| `GET /api/adherence?days=N` · `GET /api/analytics?days=N` | Adherence series & full analytics |
+| `GET /api/doses?date=YYYY-MM-DD` | Dose history for one day |
+| `GET /api/notifications` · `GET /api/achievements` | Notification center & badges |
+| `GET/POST /api/health`, `DELETE /api/health/{id}` | Health tracking entries |
+| `GET /api/export` | Full data export (JSON) |
 
-Running the Frontend
-Open terminal/PowerShell in the project directory.
+## 🛠 Tech
 
-Run the JavaFX app with Maven:
-mvn javafx:run
+Java 17 · Spring Boot 3.5 · Spring Data JPA · H2 (file mode) · Vanilla JS (no framework) · CSS custom properties for theming · Service Worker (PWA)
 
-The JavaFX window will open, allowing you to add medications and set reminders.
+> ⚠️ **Disclaimer:** The assistant and interaction checker provide general educational information only, not medical advice. Always consult your doctor or pharmacist.
 
-How They Work Together
-The JavaFX frontend communicates with the Spring Boot backend via HTTP requests.
+## License
 
-When you add a medication in the frontend, it sends a POST request to the backend.
-
-The frontend fetches the list of medications from the backend and displays them.
-
-The backend manages the medication data in-memory (you can extend it to use a database).
-
-Future Improvements
-Add update and delete medication endpoints in the backend.
-
-Persist medications in a database.
-
-Improve frontend UI with better styling and validation.
-
-Add user authentication.
-
-Technologies Used
-Java 17
-
-Spring Boot 3.5.4
-
-JavaFX 21
-
-Maven for build and dependency management
-
-License
-This project is open source and available under the MIT License.
-
+MIT
